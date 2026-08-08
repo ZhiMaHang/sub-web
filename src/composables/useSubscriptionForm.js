@@ -1,4 +1,4 @@
-import { setLocalStorageItem } from '@/utils/storage';
+import { removeLocalStorageItem, setLocalStorageItem } from '@/utils/storage';
 
 /**
  * 订阅表单状态管理 - 为Vue 2 Options API设计
@@ -73,5 +73,27 @@ export function saveSubUrl(form) {
   if (form && form.sourceSubUrl !== '') {
     const ttl = Number(import.meta.env.VITE_CACHE_TTL) || 3600;
     setLocalStorageItem('sourceSubUrl', form.sourceSubUrl, ttl);
+  }
+}
+
+/**
+ * 保存后端认证参数到本地存储
+ * @param {Object} form - 表单对象
+ */
+export function saveAuth(form) {
+  if (!form) {
+    return;
+  }
+
+  if (import.meta.env.VITE_USE_STORAGE !== 'true') {
+    removeLocalStorageItem('auth');
+    return;
+  }
+
+  if (typeof form.auth === 'string' && form.auth !== '') {
+    const ttl = Number(import.meta.env.VITE_CACHE_TTL) || 3600;
+    setLocalStorageItem('auth', form.auth, ttl);
+  } else {
+    removeLocalStorageItem('auth');
   }
 }

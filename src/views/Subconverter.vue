@@ -51,7 +51,7 @@
                   <el-input v-model="form.filename" placeholder="返回的订阅文件名" />
                 </el-form-item>
                 <el-form-item label="Auth:">
-                  <el-input v-model="form.auth" placeholder="后端认证参数" />
+                  <el-input v-model="form.auth" placeholder="后端认证参数" @blur="saveAuth" />
                 </el-form-item>
 
                 <el-form-item v-for="(param, i) in customParams" :key="i">
@@ -214,12 +214,17 @@ import { CLIENT_TYPES } from '@/config/client-types';
 import { REMOTE_CONFIGS } from '@/config/remote-configs';
 
 // 导入Composables
-import { useSubscriptionForm, addCustomParam, saveSubUrl as saveSubscriptionUrl } from '@/composables/useSubscriptionForm';
+import {
+  useSubscriptionForm,
+  addCustomParam,
+  saveSubUrl as saveSubscriptionUrl,
+  saveAuth as saveSubscriptionAuth
+} from '@/composables/useSubscriptionForm';
 import { useSubscription } from '@/composables/useSubscription';
 import { useUrlParser } from '@/composables/useUrlParser';
 
 // 导入工具函数
-import { getLocalStorageItem } from '@/utils/storage';
+import { getLocalStorageItem, removeLocalStorageItem } from '@/utils/storage';
 
 // 导入服务
 import { BackendService } from '@/services/backendService';
@@ -303,6 +308,13 @@ export default {
       if (cachedUrl) {
         this.form.sourceSubUrl = cachedUrl;
       }
+
+      const cachedAuth = getLocalStorageItem('auth');
+      if (cachedAuth) {
+        this.form.auth = cachedAuth;
+      }
+    } else {
+      removeLocalStorageItem('auth');
     }
   },
   mounted() {
@@ -439,6 +451,7 @@ export default {
         this.form,
         this.customParams,
         () => {
+          this.saveAuth();
           this.dialogLoadConfigVisible = false;
           this.loadConfig = "";
           this.$message.success("长/短链接已成功解析为订阅信息");
@@ -480,7 +493,7 @@ export default {
         message: h(
           "i",
           { style: "color: teal" },
-          "各种订阅链接（短链接服务除外）生成纯前端实现，无隐私问题。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
+          "各种订阅链接（短链接服务除外）生成纯前端实现。启用本地缓存时，订阅链接和 Auth 会保存在当前浏览器中，请勿在共享设备使用。默认提供后端转换服务，隐私担忧者请自行搭建后端服务。"
         )
       });
     },
@@ -488,6 +501,10 @@ export default {
     // 表单相关方法
     saveSubUrl() {
       saveSubscriptionUrl(this.form);
+    },
+
+    saveAuth() {
+      saveSubscriptionAuth(this.form);
     },
 
     addCustomParam() {
