@@ -1,6 +1,15 @@
 // 远程配置选项
 export const REMOTE_CONFIGS = [
   {
+    label: "ACL4SSR",
+    options: [
+      {
+        label: "ACL4SSR_Online_Full 全分组 重度用户使用(与Github同步)",
+        value: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
+      }
+    ]
+  },
+  {
     label: "universal",
     options: [
       {
