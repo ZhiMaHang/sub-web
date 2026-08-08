@@ -250,7 +250,7 @@ export default {
         clientTypes: CLIENT_TYPES,
         backendOptions: [
           { value: 'https://subconverter.zhimahang.com/sub?' },
-          { value: 'http://95.169.21.104:25500/sub?' }
+          { value: CONSTANTS.DEFAULT_CUSTOM_BACKEND }
         ],
         remoteConfig: REMOTE_CONFIGS
       },
@@ -481,7 +481,7 @@ export default {
     },
 
     async getBackendVersion() {
-      this.backendVersion = await BackendService.getBackendVersion(this.$axios);
+      this.backendVersion = await BackendService.getBackendVersion(this.$axios, this.currentBackend);
     },
 
     notify() {

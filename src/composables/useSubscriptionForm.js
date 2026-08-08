@@ -1,4 +1,6 @@
 import { removeLocalStorageItem, setLocalStorageItem } from '@/utils/storage';
+import { DEFAULT_REMOTE_CONFIG } from '@/config/remote-configs';
+import { CONSTANTS } from '@/config/constants';
 
 /**
  * 订阅表单状态管理 - 为Vue 2 Options API设计
@@ -10,8 +12,8 @@ export function useSubscriptionForm() {
     form: {
       sourceSubUrl: "",
       clientType: "",
-      customBackend: "",
-      remoteConfig: "",
+      customBackend: CONSTANTS.DEFAULT_CUSTOM_BACKEND,
+      remoteConfig: DEFAULT_REMOTE_CONFIG,
       excludeRemarks: "",
       includeRemarks: "",
       filename: "",
@@ -35,7 +37,7 @@ export function useSubscriptionForm() {
           doh: false // dns 查询是否使用 DoH
         },
         clash: {
-          doh: false
+          doh: true
         }
       }
     },

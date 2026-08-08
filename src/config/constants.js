@@ -8,6 +8,7 @@ export const CONSTANTS = {
   SHORT_URL_API: import.meta.env.VITE_MYURLS_API,
   CONFIG_UPLOAD_API: import.meta.env.VITE_CONFIG_UPLOAD_API,
   BOT_LINK: import.meta.env.VITE_BOT_LINK,
+  DEFAULT_CUSTOM_BACKEND: 'http://95.169.21.104:25500/sub?',
   DEFAULT_CLIENT_TYPE: 'clash',
   BUTTON_WIDTH: '140px',
   LARGE_BUTTON_WIDTH: '290px'
