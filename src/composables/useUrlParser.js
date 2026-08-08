@@ -79,6 +79,7 @@ export function useUrlParser() {
       form.excludeRemarks = params.get("exclude");
       form.includeRemarks = params.get("include");
       form.filename = params.get("filename");
+      form.auth = params.get("auth");
       form.appendType = params.get("append_type") === "true";
       form.emoji = params.get("emoji") === "true";
       form.nodeList = params.get("list") === "true";

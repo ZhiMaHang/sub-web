@@ -17,7 +17,7 @@
               </el-form-item>
               <el-form-item label="订阅链接:">
                 <el-input v-model="form.sourceSubUrl" type="textarea" rows="3"
-                  placeholder="支持订阅或ss/ssr/vmess链接，多个链接每行一个或用 | 分隔" @blur="saveSubUrl" />
+                  placeholder="支持订阅或ss/ssr/vmess/vless链接，多个链接每行一个或用 | 分隔" @blur="saveSubUrl" />
               </el-form-item>
               <el-form-item label="客户端:">
                 <el-select v-model="form.clientType" style="width: 100%">
@@ -49,6 +49,9 @@
                 </el-form-item>
                 <el-form-item label="FileName:">
                   <el-input v-model="form.filename" placeholder="返回的订阅文件名" />
+                </el-form-item>
+                <el-form-item label="Auth:">
+                  <el-input v-model="form.auth" placeholder="后端认证参数" />
                 </el-form-item>
 
                 <el-form-item v-for="(param, i) in customParams" :key="i">
@@ -240,7 +243,10 @@ export default {
       // 配置选项
       options: {
         clientTypes: CLIENT_TYPES,
-        backendOptions: [{ value: "http://127.0.0.1:25500/sub?" }],
+        backendOptions: [
+          { value: 'https://subconverter.zhimahang.com/sub?' },
+          { value: 'http://127.0.0.1:25500/sub?' }
+        ],
         remoteConfig: REMOTE_CONFIGS
       },
 

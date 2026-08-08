@@ -95,6 +95,11 @@ export function useSubscription() {
       params += "&filename=" + encodeURIComponent(form.filename);
     }
 
+    // 后端认证参数
+    if (form.auth) {
+      params += "&auth=" + encodeURIComponent(form.auth);
+    }
+
     // 节点类型
     if (form.appendType) {
       params += "&append_type=" + form.appendType.toString();

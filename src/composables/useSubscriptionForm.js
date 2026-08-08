@@ -15,6 +15,7 @@ export function useSubscriptionForm() {
       excludeRemarks: "",
       includeRemarks: "",
       filename: "",
+      auth: "",
       emoji: true,
       nodeList: false,
       extraset: false,
