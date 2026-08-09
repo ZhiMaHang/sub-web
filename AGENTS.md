@@ -9,7 +9,7 @@ Vue 2.7 + Vite 8 SPA with Element UI. Keep changes small, follow existing patter
 - UI: Element UI 2
 - Router: Vue Router 3 (history mode, base from `import.meta.env.BASE_URL`)
 - Node: 24.x
-- No automated tests currently
+- Tests: Node.js test runner with Vite SSR module loading
 
 ## Commands
 
@@ -20,6 +20,7 @@ Vue 2.7 + Vite 8 SPA with Element UI. Keep changes small, follow existing patter
 | `yarn build` | Production build |
 | `yarn preview` | Preview production build locally |
 | `yarn lint` | ESLint check |
+| `yarn test` | Run tests |
 
 ## CI / Workflows
 
@@ -60,6 +61,7 @@ src/
     ├── index.js                 # Registers SVG sprite
     └── svg/                     # SVG source files (e.g., github.svg)
 services/                        # Docker Compose stack (subweb + myurls + redis)
+tests/                           # Node.js tests loaded through Vite SSR
 ```
 
 ## Key Modules
@@ -196,4 +198,4 @@ data() {
 - Follow existing patterns; minimise scope
 - No large refactors unless explicitly requested
 - Do not introduce TypeScript or new tooling without approval
-- No test runner configured; if added, document the single-test command here
+- Run `yarn test` for the Node.js test suite

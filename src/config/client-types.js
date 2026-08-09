@@ -1,6 +1,7 @@
 // 客户端类型配置
 export const CLIENT_TYPES = {
   Clash: "clash",
+  Stash: "stash",
   Surge: "surge&ver=4",
   Quantumult: "quan",
   QuantumultX: "quanx",

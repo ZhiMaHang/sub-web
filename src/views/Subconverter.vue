@@ -287,7 +287,7 @@ export default {
     },
 
     canImportClash() {
-      return this.customSubUrl.length > 0;
+      return this.customSubUrl.length > 0 && this.form.clientType !== 'stash';
     },
 
     processedSubUrl() {

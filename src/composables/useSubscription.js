@@ -1,5 +1,7 @@
 import { validateForm } from '@/utils/validators';
 
+const CLASH_YAML_CLIENT_TYPES = new Set(['clash', 'stash']);
+
 /**
  * 订阅链接生成逻辑
  */
@@ -45,8 +47,8 @@ export function useSubscription() {
       params += "&surge.doh=true";
     }
 
-    if (form.clientType === "clash") {
-      if (form.tpl.clash.doh === true) {
+    if (CLASH_YAML_CLIENT_TYPES.has(form.clientType)) {
+      if (form.clientType === 'clash' && form.tpl.clash.doh === true) {
         params += "&clash.doh=true";
       }
       params += "&new_name=" + form.new_name.toString();
