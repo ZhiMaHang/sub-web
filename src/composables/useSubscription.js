@@ -48,7 +48,7 @@ export function useSubscription() {
     }
 
     if (CLASH_YAML_CLIENT_TYPES.has(form.clientType)) {
-      if (form.clientType === 'clash' && form.tpl.clash.doh === true) {
+      if (form.tpl.clash.doh === true) {
         params += "&clash.doh=true";
       }
       params += "&new_name=" + form.new_name.toString();

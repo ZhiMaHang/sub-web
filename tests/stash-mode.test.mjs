@@ -60,7 +60,7 @@ test('Stash is available as a dedicated client target', () => {
   assert.equal(clientTypes.CLIENT_TYPES.Stash, 'stash')
 })
 
-test('Stash URLs retain shared Clash YAML options without Clash-only DoH', () => {
+test('Stash URLs retain shared Clash YAML options including DoH', () => {
   const { makeUrl } = subscription.useSubscription()
   const generated = makeUrl(
     makeForm('stash'),
@@ -74,7 +74,32 @@ test('Stash URLs retain shared Clash YAML options without Clash-only DoH', () =>
 
   assert.equal(params.get('target'), 'stash')
   assert.equal(params.get('new_name'), 'true')
-  assert.equal(params.get('clash.doh'), null)
+  assert.equal(params.get('clash.doh'), 'true')
+  assert.equal(params.getAll('clash.doh').length, 1)
+
+  const stashWithoutDoh = makeForm('stash')
+  stashWithoutDoh.tpl.clash.doh = false
+  const stashWithoutDohParams = new URL(makeUrl(
+    stashWithoutDoh,
+    '2',
+    'vless://example-node',
+    'https://converter.example/sub?',
+    [],
+    false
+  )).searchParams
+
+  assert.equal(stashWithoutDohParams.get('clash.doh'), null)
+
+  const nonClashParams = new URL(makeUrl(
+    makeForm('singbox'),
+    '2',
+    'vless://example-node',
+    'https://converter.example/sub?',
+    [],
+    false
+  )).searchParams
+
+  assert.equal(nonClashParams.get('clash.doh'), null)
 })
 
 test('URL parsing restores the Stash target and Clash YAML options', async () => {
