@@ -16,7 +16,7 @@ export function useSubscriptionForm() {
       remoteConfig: DEFAULT_REMOTE_CONFIG,
       excludeRemarks: "",
       includeRemarks: "",
-      filename: "",
+      filename: "ZhiMaHang",
       auth: "",
       emoji: true,
       nodeList: false,
