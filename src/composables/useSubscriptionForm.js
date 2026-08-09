@@ -22,7 +22,7 @@ export function useSubscriptionForm() {
       nodeList: false,
       extraset: false,
       sort: false,
-      udp: false,
+      udp: true,
       tfo: false,
       scv: true,
       fdn: false,
@@ -49,7 +49,7 @@ export function useSubscriptionForm() {
     advanced: "2",
 
     // 是否需要UDP
-    needUdp: false,
+    needUdp: true,
 
     // 生成的订阅链接
     customSubUrl: ""
