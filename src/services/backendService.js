@@ -16,10 +16,8 @@ export class BackendService {
       return "";
     }
 
-    // 提取版本 API 路径
-    const versionApiUrl = backend.substring(0, backend.length - 5) + "/version";
-
     try {
+      const versionApiUrl = new URL('/version', backend).toString();
       const response = await $axios.get(versionApiUrl);
       // 清理版本信息格式
       let version = formatVersion(response.data);
